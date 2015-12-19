@@ -19,6 +19,9 @@ title: The Skies Tech Blog
 # Short description of your site
 description: Technical Blog - Skies.io
 
+# Favicon
+favicon: "/img/skies-favicon-32x32.png"
+
 # --- Navigation bar options --- #
 
 # Image to show in the navigation bar - image must be a square (width = height)
@@ -59,7 +62,7 @@ url-pretty: "skies.io"  # eg. "deanattali.com/beautiful-jekyll"
 # --- Misc --- #
 
 # Fill in your Disqus shortname (NOT the userid) if you want to support Disqus comments
-#disqus: ""
+disqus: "skiestechblog"
 
 # Fill in your Google Analytics ID to track your website using GA
 #google_analytics: ""

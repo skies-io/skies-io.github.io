@@ -67,4 +67,8 @@
         <meta property="og:image" content="" />
     {% endif %}
 
+    {% if site.favicon %}
+        <link href="{{ site.favicon | prepend: site.baseurl | replace: '//', '/' }}" rel="icon" type="image/png" />
+    {% endif %}
+
 </head>
