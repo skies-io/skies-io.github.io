@@ -1,0 +1,11 @@
+{% assign counter = 0 %}
+{% assign authors_len = include.authors | size %}
+{% assign pos_last = include.authors | size | minus:1 %}
+
+{% if authors_len > 0 %}
+    by
+    {% for author in include.authors %}
+        {% assign counter = counter | plus:1 %}
+        <span title="{{ site.data.authors[author].title }}">{{ site.data.authors[author].name }}</span>{% if counter == pos_last %} and{% elsif counter < authors_len %},{% endif %}
+    {% endfor %}
+{% endif %}
