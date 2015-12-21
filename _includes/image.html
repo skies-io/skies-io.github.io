@@ -1,0 +1,22 @@
+{% if include.title %}
+    {% assign title = include.caption %}
+{% else %}
+    {% if include.caption %}
+        {% assign title = include.caption %}
+    {% else %}
+        yolo
+        {% assign title = "Image" %}
+    {% endif %}
+{% endif %}
+<div class="image-wrapper" >
+    {% if include.url %}
+        <a href="{{ include.url }}" title="{{ title }}"{% if include.blank %} target="_blank"{% endif %}>
+    {% endif %}
+        <img src="{{ site.baseurl }}/{{ include.img }}" alt="{{ title }}"/>
+    {% if include.url %}
+        </a>
+    {% endif %}
+    {% if include.caption %}
+        <p class="image-caption">{{ include.caption }}</p>
+    {% endif %}
+</div>

@@ -9,25 +9,15 @@ hidden: true # Draft
 
 ## Introduction
 
-- Qu'est-ce que CI
-- Intérêt
-- A faire au début d'un projet
-- Mise en place de tests units
-- GitHub
-- Nos besoins / technos
-- Importance d'avoir des tests et de la CI
+A large project announced: teamwork, use of many libraries, many lines of code, several mini-projects that will eventually be linked together... If we do not quickly install a Continuous Integration (CI) system it will be difficult to do later.
 
-## Critères des solutions
+This system will allow us to verify the source code throughout the project in order to always be sure not to do regressions (both at the functional level, performance or quality of the code). For this, we will have to use and set up some tools.
 
-- Linux
-- Gratos
-- Sur nos serveurs
-- Hook GitHub
-- Notifications/Publication sur Slack
-- Compilation, units tests, code coverage, static code analysis, stats de perf, code duplication, complexity
-- Rapports des résultats
+Our projects are realized mainly in C++ and are hosted on GitHub repositories. We chose to create unit tests with the library "GoogleTest". This article does not detail the created of unit tests, but the various tools to recover the source code at each modification, the code analysis (static code analysis, complexity, code duplication), the test compilations, the launch of unit tests, the calculation of unit tests coverage, the application performance and finally the generation of reports on a single interface with the publication of results (on Slack or by email).
 
-- Schéma : Dévs -> GitHub -> {Build/Unit tests/Coverage/complexity/...} -> Rapports -> {Interface/Slack}
+{% include image.html img="assets/Continuous-Integration/Introduction-CI-Schema.png" caption="CI schema" %}
+
+We were looking for tools that can be installed on our own servers (Unix) and which are free.
 
 ## Jenkins
 
