@@ -21,11 +21,13 @@ We were looking for tools that can be installed on our own servers (Unix) and wh
 
 ## Jenkins
 
-- Assez rapide à mettre en place
-- Utilisation de cppcheck/gcovr
-- Rapports pas très compréhensible, interface vieille, non moderne, pas ergo
-- Solution fonctionnelle mais pas moderne, solution de secours
-- Solution reconnue/sûre
+Of course, the first to be tested was Jenkins. It is the CI tool the most known and one of the most used. Its installation was fairly simple and fast.
+
+The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used "Google Test" for unit tests, "cppcheck" for static code analysis and "gcovr" to calculate the coverage rate. The different compilations are done through a "Makefile". This list of tasks is defined via an Ant configuration file. Then just install Jenkins plugins to retrieve and format the results ("Cobertura Plugin" for the output of "gcovr", "Cppcheck Plug-in" for "cppcheck",...).
+
+You can find the Ant file used for our test here: [build.xml]({{ site.baseurl }}/assets/Continuous-Integration/Jenkins-Ant-file.html).
+
+The installation, the configuration, and test execution is not too difficult with Jenkins. However, analysis of results and reports for developers were clearly not excellent. The Jenkins interface is old and is not ergonomic at all (although it works fine). We preferred to look for another CI system, more modern and ergonomic, and keep this solution in backup plan.
 
 ## Strider-CD
 
