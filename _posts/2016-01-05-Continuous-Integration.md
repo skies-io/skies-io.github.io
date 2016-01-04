@@ -14,11 +14,19 @@ This system will allow us to verify the source code all through the project in o
 
 Our projects are mainly realized in C++ and are hosted on GitHub repositories. We chose to create unit tests with the library [GoogleTest](https://github.com/google/googletest). This article does not cover the creation of unit tests but the various tools to orchestrate and industrialize source code analysis: from recovering and compiling the source code at each modification up to the the generation of reports on a single interface with the publication of results (on [Slack](https://slack.com) or by email) through static code analysis, complexity, code duplication, executing unit tests, computing code coverage, and finally testing the application performance.
 
-We were looking for tools that can be installed on our own servers (Unix) and which are free.
+We were looking for tools that meet the following criteria:
+* Open source license
+* Running on linux
+* Compatible with git
+* Supporting multiple programmating languages (C++, Python, Javascript and more to come)
+* Maintained and documented
+* Used by established companies
+
+Here is our candidates.
 
 ## Jenkins
 
-Of course, the first to be tested was [Jenkins](https://jenkins-ci.org). It is the most known CI tool and one of the most used. Its installation was fairly simple and fast.
+Of course, the first to be tested was [Jenkins](https://jenkins-ci.org) (MIT license). It is the most known CI tool and one of the most used (eBay, Google, Facebook, NetFlix, Yahoo and many others). Its installation was fairly simple and fast.
 
 The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used [GoogleTest](https://github.com/google/googletest) for unit tests, [cppcheck](http://cppcheck.sourceforge.net) for static code analysis and [gcovr](http://gcovr.com) to calculate the coverage rate. The different compilations are done through a "Makefile". This list of tasks is defined through an Ant configuration file. Then we just have to install Jenkins plugins to retrieve and format the results (i.e.: "Cobertura Plugin" for the output of "gcovr", "Cppcheck Plug-in" for "cppcheck"...).
 
@@ -36,7 +44,7 @@ Moreover, in spite of a quick installation, the interface is not perfect: some p
 
 ## BuildBot
 
-Next system, [BuildBot](http://buildbot.net). It is an Open Source CI written in Python. Compared to the previous systems, the installation and configuration of this one are a bit more complex.
+Next system, [BuildBot](http://buildbot.net) (GPL license). It is an Open Source CI written in Python. Compared to the previous systems, the installation and configuration of this one are a bit more complex.
 
 Indeed, unlike other tools where most configurations were filled with a GUI, BuildBot must be configured through a python file. It is inside that we define task lists, GitHub hook for calling a builder automatically, admin access, and more ... Even if it seems quite complex at first (the untidy documentation does not help) the configuration is more permissive; Moreover, once you have understood each part to configure, it is fairly simple to adjust the tool to your problems.
 
@@ -46,13 +54,25 @@ Finally, the interface is not very modern like Jenkins, but it is possible to cu
 
 {% include image.html img="assets/Continuous-Integration/BuildBot-preview.png" caption="BuildBot preview" %}
 
-## PaaS Software
+## PaaS products
 
-I did not manage to find better tools that meet our criteria that they cited previously. Most modern tools are charged (and hosted in the cloud).
+Being in 2016, we could not overlook PaaS products offering Continuous Integration but ultimately we chose not to use them.
 
-But some of them seem really complete while remaining much more ergonomic and easier to configure than Jenkins/Strider-CD/BuildBot. Some even offer free solutions for your public repositories.
+Why ?
 
-Although we have not tested these online tools, they can be useful to your criteria. Here are those who were able to hold our attention: [TeamCity](https://www.jetbrains.com/teamcity/), [Codeship](https://codeship.com/), [Bamboo](https://www.atlassian.com/software/bamboo/), [Drone.io](https://drone.io), [CircleCI](https://circleci.com), [GitLab-CI](https://about.gitlab.com/gitlab-ci/) and [Travis-CI](https://travis-ci.com).
+These tools are :
+ * offering a great UI
+ * easier and faster to set up
+ 
+But 
+* They offer less flexbility and features (for instance, many of them do not support pull requests or log compressions)
+* We do not want to depend on 3rd party tools for such crucial parts and have our code accessible on remote servers.
+* Some of them (like hosted-ci) are just a hosted Jenkins server.
+* They are quite expensive (Travis-CI starts at $139/month) for non open source projects.
+
+Some might argue that hosting, installing, configuring and running a Jenkins server (or equivalent) is way more expensive but we really want to maintain control over our CI.
+
+Although we have not tested extensively these online tools, they could still be useful to you, depending on your needs and criteria. Here are those which were able to hold our attention: [TeamCity](https://www.jetbrains.com/teamcity/), [Codeship](https://codeship.com/), [Bamboo](https://www.atlassian.com/software/bamboo/), [Drone.io](https://drone.io), [CircleCI](https://circleci.com), [GitLab-CI](https://about.gitlab.com/gitlab-ci/) and [Travis-CI](https://travis-ci.com).
 
 ## SonarQube
 
@@ -66,17 +86,24 @@ Sonar also made some further analysis of the code, such as its complexity or dup
 
 {% include image.html img="assets/Continuous-Integration/Sonar-preview.png" caption="Sonar preview" %}
 
-## Our choice
+## Our stack
 
-Sonar is really well done, we decided to opt for this solution. However, it requiring another tool for executing commands and sending it the results, so we also decided to use BuildBot.
+We have decided to use BuildBot and Sonar.
 
-Thus, BuildBot executes our commands (unit tests, cppcheck, gcovr, valgrind, ...) after receiving an event from GitHub (with our hook) then it takes care to call "sonar-runner" to send our results to Sonar.
+BuildBot executes our commands (unit tests, cppcheck, gcovr, valgrind, ...) after receiving an event from GitHub (with our hook) and pass the results to Sonar (through a script called "sonar-runner").
 
 Here are our configuration files for these tools:
 
 - BuildBot master settings: [master.cfg]({{ site.baseurl }}/assets/Continuous-Integration/BuildBot-Master-cfg.html)
 - "Sonar-runner" settings to send the reports to Sonar (through the Sonar plugin-CXX): [sonar-project.properties]({{ site.baseurl }}/assets/Continuous-Integration/Sonar-Project-Properties.html)
 
-Although the configuration of BuildBot is not intuitive, it is the one with the fewest constraints. And even if this is not done yet, the interconnection with Slack can be made easily.
+Although the configuration of BuildBot is not intuitive, it is one of the tool with the fewest constraints. Here is what the architecture looks like :
 
 {% include image.html img="assets/Continuous-Integration/Conclusion-CI-Schema.png" caption="CI schema" %}
+
+## What's next ?
+
+For now, this stack meets our needs. We are going to closely monitor the build time and the failure rates of our builds and see if BuildBot's performances are up to the task.
+
+
+We are also planing to integrate the code review tool  [Gerrit](http://www.gerritcodereview.com) in our workflow to improve the quality of our code.
