@@ -14,8 +14,6 @@ This system will allow us to verify the source code all through the project in o
 
 Our projects are mainly realized in C++ and are hosted on GitHub repositories. We chose to create unit tests with the library [GoogleTest](https://github.com/google/googletest). This article does not cover the creation of unit tests but the various tools to orchestrate and industrialize source code analysis: from recovering and compiling the source code at each modification up to the the generation of reports on a single interface with the publication of results (on [Slack](https://slack.com) or by email) through static code analysis, complexity, code duplication, executing unit tests, computing code coverage, and finally testing the application performance.
 
-{% include image.html img="assets/Continuous-Integration/Introduction-CI-Schema.png" caption="CI schema" %}
-
 We were looking for tools that can be installed on our own servers (Unix) and which are free.
 
 ## Jenkins
@@ -45,6 +43,8 @@ Indeed, unlike other tools where most configurations were filled with a GUI, Bui
 However, there is no way to previewing reports. As Strider-CD, the tool only allows the execution of tasks and not the analysis of results.
 
 Finally, the interface is not very modern like Jenkins, but it is possible to customize the HTML and CSS of the tool by overriding the template files.
+
+{% include image.html img="assets/Continuous-Integration/BuildBot-preview.png" caption="BuildBot preview" %}
 
 ## PaaS Software
 
