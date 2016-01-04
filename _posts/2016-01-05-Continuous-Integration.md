@@ -15,12 +15,12 @@ This system will allow us to verify the source code all through the project in o
 Our projects are mainly realized in C++ and are hosted on GitHub repositories. We chose to create unit tests with the library [GoogleTest](https://github.com/google/googletest). This article does not cover the creation of unit tests but the various tools to orchestrate and industrialize source code analysis: from recovering and compiling the source code at each modification up to the the generation of reports on a single interface with the publication of results (on [Slack](https://slack.com) or by email) through static code analysis, complexity, code duplication, executing unit tests, computing code coverage, and finally testing the application performance.
 
 We were looking for tools that meet the following criteria:
-* Open source license
-* Running on linux
-* Compatible with git
-* Supporting multiple programmating languages (C++, Python, Javascript and more to come)
-* Maintained and documented
-* Used by established companies
+- Open source license
+- Running on linux
+- Compatible with git
+- Supporting multiple programmating languages (C++, Python, Javascript and more to come)
+- Maintained and documented
+- Used by established companies
 
 Here is our candidates.
 
@@ -61,14 +61,14 @@ Being in 2016, we could not overlook PaaS products offering Continuous Integrati
 Why ?
 
 These tools are :
- * offering a great UI
- * easier and faster to set up
+ - offering a great UI
+ - easier and faster to set up
  
 But 
-* They offer less flexbility and features (for instance, many of them do not support pull requests or log compressions)
-* We do not want to depend on 3rd party tools for such crucial parts and have our code accessible on remote servers.
-* Some of them (like hosted-ci) are just a hosted Jenkins server.
-* They are quite expensive (Travis-CI starts at $139/month) for non open source projects.
+- They offer less flexbility and features (for instance, many of them do not support pull requests or log compressions)
+- We do not want to depend on 3rd party tools for such crucial parts and have our code accessible on remote servers.
+- Some of them (like hosted-ci) are just a hosted Jenkins server.
+- They are quite expensive (Travis-CI starts at $139/month) for non open source projects.
 
 Some might argue that hosting, installing, configuring and running a Jenkins server (or equivalent) is way more expensive but we really want to maintain control over our CI.
 
