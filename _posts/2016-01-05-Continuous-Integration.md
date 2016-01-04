@@ -4,7 +4,6 @@ title: Continuous Integration Platform
 subtitle: How we built our CI Platform
 authors:
   - aurelien
-hidden: true # Draft
 ---
 
 ## Introduction

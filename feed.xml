@@ -8,13 +8,12 @@ layout: null
         <description>{{ site.description | xml_escape }}</description>
         <link>{{ site.url }}</link>
         <atom:link href="{{ site.url }}/feed.xml" rel="self" type="application/rss+xml" />
-        {% for post in site.posts limit:20 %}
+        {% assign posts = (site.posts | where: "hidden", false) %}
+        {% for post in posts limit:20 %}
             <item>
                 <title>{{ post.title | xml_escape }}</title>
-                <description>
-                    {% if post.subtitle %}{{ post.subtitle | xml_escape }} - {% endif %}
-                    {{ post.content | strip_html | xml_escape | truncatewords: 50 }}
-                </description>
+                <author>{% capture authors %}{% include authors.html authors=post.authors html=false %}{% endcapture %}{{ authors | remove: "  " | strip_newlines }}</author>
+                <description>{% if post.subtitle %}{{ post.subtitle | xml_escape }} - {% endif %}{{ post.content | strip_html | xml_escape | truncatewords: 40 }}</description>
                 <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
                 <link>{{ site.url }}{{ post.url }}</link>
                 <guid isPermaLink="true">{{ site.url }}{{ post.url }}</guid>
