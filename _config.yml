@@ -22,6 +22,12 @@ description: Technical Blog - Skies.io
 # Favicon
 favicon: "/img/skies-favicon-32x32.png"
 
+# --- SCSS --- #
+
+sass:
+  sass_dir: css/scss
+  style: compressed
+
 # --- Navigation bar options --- #
 
 # Image to show in the navigation bar - image must be a square (width = height)

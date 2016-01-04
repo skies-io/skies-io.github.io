@@ -1,11 +1,5 @@
-SCHEMA/GRAPHISMES
-- screenshots (sonar)
-
 CI TOOLS
 - dire par qui il est maintenu s'ils sont connus (genre apache fondation) et qui l'utilise (gage de credibilité)
-- Sonar
-    -> interet aussi d'avoir une visibilite globale sur notre base de code
-    -> si les problemes sont mis en avant on peut plus facilement les traiter (par exemple via l'analyseur de code static)
 
 INTRODUCTION
 - mieux expliquer le enjeux dans l'introduction

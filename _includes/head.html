@@ -18,31 +18,26 @@
             <link rel="stylesheet" href="{{ css }}" />
         {% endfor %}
     {% endif %}
-
     {% if page.common-css %}
         {% for css in page.common-css %}
             <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
         {% endfor %}
     {% endif %}
-
     {% if page.common-googlefonts %}
         {% for font in page.common-googlefonts %}
             <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
         {% endfor %}
     {% endif %}
-
     {% if page.ext-css %}
         {% for css in page.ext-css %}
             <link rel="stylesheet" href="{{ css }}" />
         {% endfor %}
     {% endif %}
-
     {% if page.css %}
         {% for css in page.css %}
             <link rel="stylesheet" href="{{ css | prepend: site.baseurl | replace: '//', '/' }}" />
         {% endfor %}
     {% endif %}
-
     {% if page.googlefonts %}
         {% for font in page.googlefonts %}
             <link rel="stylesheet" href="//fonts.googleapis.com/css?family={{ font }}" />
@@ -70,16 +65,5 @@
     {% if site.favicon %}
         <link href="{{ site.favicon | prepend: site.baseurl | replace: '//', '/' }}" rel="icon" type="image/png" />
     {% endif %}
-
-    <style>
-    .image-wrapper {
-      text-align: center;
-    }
-    .image-wrapper > .image-caption {
-      color: #7F7F7F;
-      margin-top: 5px;
-      font-size: 90%;
-    }
-    </style>
 
 </head>

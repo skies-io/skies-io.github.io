@@ -63,7 +63,9 @@ Sonar does not execute a bunch of commands like the previous tools. However, it 
 
 We also used [Sonar-CXX](https://github.com/SonarOpenCommunity/sonar-cxx), a plugin for Sonar to manage the C++. It can read the reports of [Valgrind](http://valgrind.org), [cppcheck](http://cppcheck.sourceforge.net), [RATS](https://code.google.com/p/rough-auditing-tool-for-security/), [gcovr](http://gcovr.com), [Vera++](https://bitbucket.org/verateam/vera/overview) ...
 
-Sonar also made some further analysis of the code, such as its complexity or duplication rate.
+Sonar also made some further analysis of the code, such as its complexity or duplication rate. The advantage of using SonarQube is to have a global visibility over the source code; if the problems are put forward, it is easier to correct them.
+
+{% include image.html img="assets/Continuous-Integration/Sonar-preview.png" caption="Sonar preview" %}
 
 ## Our choice
 
