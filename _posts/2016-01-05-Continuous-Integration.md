@@ -14,10 +14,10 @@ That's when Continuous Integration (CI) comes into play. It's development practi
 
 It seems really important to us to spend some time at the beginning of the project to build a platform supporting this development practice in order to detect errors early and to reduce the techincal debt. We want to increase our productivity and our product's reliability by ensuring that every aspect of the codebase is always tested (functional level, speed of execution, network performance, quality of the code). And for that, we have to use and set up some tools.
 
-Our projects are mainly realized in C++ and are hosted on GitHub repositories. We have chosen to create unit tests with the library [GoogleTest](https://github.com/google/googletest). 
+Our projects are mainly realized in C++ and are hosted on GitHub repositories. We have chosen to create unit tests with the library [GoogleTest](https://github.com/google/googletest).
 
 However, this article does not cover the creation of unit tests but describes the various tools to orchestrate and industrialize source code analysis. It goes from fetching and compiling the source code at each modification up to the generation of reports on a single interface with the publication of results on [Slack](https://slack.com) or by email.
-We also go through: 
+We also go through:
 
 - static code analysis
 - complexity
@@ -61,7 +61,7 @@ The next tool to be tested is [BuildBot](http://buildbot.net) (GPL license). It 
 
 Indeed, unlike other tools where most configurations were filled with a GUI, BuildBot must be configured through a python file. It is inside that we define task lists, GitHub hook for calling a builder automatically, admin access, and more ... Even if it seems quite complex at first (the untidy documentation does not help) the configuration is more permissive; moreover, once you have understood each part to configure, it is fairly simple to adjust the tool to your problems.
 
-However, there is no way to previewing reports. As Strider-CD, the tool only allows the execution of tasks and not the analysis of results.
+However, there is no way to previewing reports. As `Strider-CD`, *the* **tool** _only_ __allows__ the execution of tasks and not the analysis of results.
 
 Finally, the interface is not very modern like Jenkins, but it is possible to customize the HTML and CSS of the tool by overriding the template files.
 
@@ -77,7 +77,7 @@ These tools are:
 
  - offering a great UI
  - easier and faster to set up
- 
+
 But:
 
 - they offer less flexbility and features (for instance, many of them do not support pull requests or log compressions)
