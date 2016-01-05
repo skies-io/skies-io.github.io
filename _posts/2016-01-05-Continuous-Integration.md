@@ -10,30 +10,30 @@ authors:
 
 Working on a large project with a team is not an easy task. A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build.
 
-That's when Continuous Integration (CI) comes into play. It's development practice requiring developers to push code on a daily basis in a common branch and execute a list of commands to test and build the project. We like the definition that [Thoughtworks](https://www.thoughtworks.com/continuous-integration) provides.
+That's when Continuous Integration (CI) comes into play. It's development practice requiring developers to push code on a daily basis in a common branch and execute a list of commands to test and build the project. A more exhaustive definition that we like can be found on [Thoughtworks](https://www.thoughtworks.com/continuous-integration) provides.
 
 It seems really important to us to spend some time at the beginning of the project to build a platform supporting this development practice in order to detect errors early and to reduce the techincal debt. We want to increase our productivity and our product's reliability by ensuring that every aspect of the codebase is always tested (functional level, speed of execution, network performance, quality of the code). And for that, we have to use and set up some tools.
 
 Our projects are mainly realized in C++ and are hosted on GitHub repositories. We have chosen to create unit tests with the library [GoogleTest](https://github.com/google/googletest). 
 
 However, this article does not cover the creation of unit tests but describes the various tools to orchestrate and industrialize source code analysis. It goes from fetching and compiling the source code at each modification up to the generation of reports on a single interface with the publication of results on [Slack](https://slack.com) or by email.
-We also go through : 
+We also go through: 
 
-- Static code analysis
-- Complexity
-- Code duplication
-- Executing unit tests
-- Computing code coverage
-- Testing the application performance.
+- static code analysis
+- complexity
+- code duplication
+- executing unit tests
+- computing code coverage
+- testing the application performance
 
 We were looking for tools that meet the following criteria:
 
-- Open source license
-- Running on linux
-- Compatible with git
-- Supporting multiple programmating languages (C++, Python, Javascript and more to come)
-- Maintained and documented
-- Used by established companies
+- open source license
+- running on linux
+- compatible with git
+- supporting multiple programmating languages (C++, Python, Javascript and more to come)
+- maintained and documented
+- used by established companies
 
 Here is our candidates.
 
@@ -41,7 +41,7 @@ Here is our candidates.
 
 Of course, the first to be tested was [Jenkins](https://jenkins-ci.org) (MIT license). It is the most known CI tool and one of the most used (eBay, Google, Facebook, NetFlix, Yahoo and many others). Its installation was fairly simple and fast.
 
-The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used [GoogleTest](https://github.com/google/googletest) for unit tests, [cppcheck](http://cppcheck.sourceforge.net) for static code analysis and [gcovr](http://gcovr.com) to calculate the coverage rate. The different compilations are done through a "Makefile". This list of tasks is defined through an Ant configuration file. Then we just have to install Jenkins plugins to retrieve and format the results (i.e.: "Cobertura Plugin" for the output of "gcovr", "Cppcheck Plug-in" for "cppcheck"...).
+The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used [GoogleTest](https://github.com/google/googletest) for unit tests, [cppcheck](http://cppcheck.sourceforge.net) for static code analysis and [gcovr](http://gcovr.com) to calculate the coverage rate. The different compilations are done through a Makefile. This list of tasks is defined through an Ant configuration file. Then we just have to install Jenkins plugins to retrieve and format the results (i.e.: Cobertura Plugin for the output of gcovr, Cppcheck Plug-in for cppcheck...).
 
 You can find the Ant file used for our test here: [build.xml]({{ site.baseurl }}/assets/Continuous-Integration/Jenkins-Ant-file.html).
 
@@ -57,7 +57,7 @@ Moreover, in spite of a quick installation, the interface is not perfect: some p
 
 ## BuildBot
 
-Next system, [BuildBot](http://buildbot.net) (GPL license). It is an Open Source CI written in Python. Compared to the previous systems, the installation and configuration of this one are a bit more complex.
+The next tool to be tested is [BuildBot](http://buildbot.net) (GPL license). It is an Open Source CI written in Python. Compared to the previous systems, the installation and configuration of this one are a bit more complex.
 
 Indeed, unlike other tools where most configurations were filled with a GUI, BuildBot must be configured through a python file. It is inside that we define task lists, GitHub hook for calling a builder automatically, admin access, and more ... Even if it seems quite complex at first (the untidy documentation does not help) the configuration is more permissive; Moreover, once you have understood each part to configure, it is fairly simple to adjust the tool to your problems.
 
@@ -71,7 +71,7 @@ Finally, the interface is not very modern like Jenkins, but it is possible to cu
 
 Being in 2016, we could not overlook PaaS products offering Continuous Integration but ultimately we chose not to use them.
 
-Why ?
+Why?
 
 These tools are:
 
@@ -80,10 +80,10 @@ These tools are:
  
 But:
 
-- They offer less flexbility and features (for instance, many of them do not support pull requests or log compressions)
-- We do not want to depend on 3rd party tools for such crucial parts and have our code accessible on remote servers.
-- Some of them (like hosted-ci) are just a hosted Jenkins server.
-- They are quite expensive (Travis-CI starts at $139/month) for non open source projects.
+- they offer less flexbility and features (for instance, many of them do not support pull requests or log compressions)
+- we do not want to depend on 3rd party tools for such crucial parts and have our code accessible on remote servers
+- some of them (like hosted-ci) are just a hosted Jenkins server
+- they are quite expensive (Travis-CI starts at $139/month) for non open source projects
 
 Some might argue that hosting, installing, configuring and running a Jenkins server (or equivalent) is way more expensive but we really want to maintain control over our CI.
 
@@ -103,20 +103,20 @@ Sonar also made some further analysis of the code, such as its complexity or dup
 
 ## Our stack
 
-We have decided to use BuildBot and Sonar.
+We have decided to use BuildBot and Sonar for our Continuous Integration platform.
 
 BuildBot executes our commands (unit tests, cppcheck, gcovr, valgrind, ...) after receiving an event from GitHub (with our hook) and pass the results to Sonar (through a script called "sonar-runner").
 
 Here are our configuration files for these tools:
 
 - BuildBot master settings: [master.cfg]({{ site.baseurl }}/assets/Continuous-Integration/BuildBot-Master-cfg.html)
-- "Sonar-runner" settings to send the reports to Sonar (through the Sonar plugin-CXX): [sonar-project.properties]({{ site.baseurl }}/assets/Continuous-Integration/Sonar-Project-Properties.html)
+- Sonar-runner settings to send the reports to Sonar (through the Sonar plugin-CXX): [sonar-project.properties]({{ site.baseurl }}/assets/Continuous-Integration/Sonar-Project-Properties.html)
 
-Although the configuration of BuildBot is not intuitive, it is one of the tool with the fewest constraints. Here is what the architecture looks like :
+Although the configuration of BuildBot is not intuitive, it is one of the tool with the fewest constraints. Here is what the architecture looks like:
 
 {% include image.html img="assets/Continuous-Integration/Conclusion-CI-Schema.png" caption="CI schema" %}
 
-## What's next ?
+## What's next?
 
 For now, this stack meets our needs. We are going to closely monitor the build time and the failure rates of our builds and see if BuildBot's performances are up to the task.
 
