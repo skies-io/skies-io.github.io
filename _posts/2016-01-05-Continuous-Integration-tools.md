@@ -43,7 +43,7 @@ Of course, the first to be tested was [*Jenkins*](https://jenkins-ci.org) (*MIT 
 
 The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used [*GoogleTest*](https://github.com/google/googletest) for unit tests, [*cppcheck*](http://cppcheck.sourceforge.net) for static code analysis and [*gcovr*](http://gcovr.com) to calculate the coverage rate. The different compilations are done through a *Makefile*. This list of tasks is defined through an *Ant* configuration file. Then we just have to install *Jenkins* plugins to retrieve and format the results (*Cobertura Plugin* for the output of *gcovr* and *Cppcheck Plug-in* for *cppcheck*).
 
-You can find the *Ant* file used for our test here: [*build.xml*]({{ site.baseurl }}/assets/Continuous-Integration/Jenkins-Ant-file.html).
+You can find the *Ant* file used for our test here: [*build.xml*]({{ site.baseurl }}/assets/Continuous-Integration-tools/Jenkins-Ant-file.html).
 
 The installation, the configuration, and test execution are not too difficult with *Jenkins*. However, analysis of results and reports for developers were clearly not pleasant. The *Jenkins* interface is old and not ergonomic at all although it works fine. We preferred to look for another *CI* system, more modern and ergonomic and keep this solution as a backup plan.
 
@@ -65,7 +65,7 @@ However, there is no way to previewing reports. As *Strider-CD*, the tool only a
 
 Finally, the interface is not very modern like *Jenkins*, but it is possible to customize the *HTML* and *CSS* of the tool by overriding the template files.
 
-{% include image.html img="assets/Continuous-Integration/BuildBot-preview.png" caption="BuildBot preview" %}
+{% include image.html img="assets/Continuous-Integration-tools/BuildBot-preview.png" caption="BuildBot preview" %}
 
 ## PaaS products
 
@@ -99,7 +99,7 @@ We also used [*Sonar-CXX*](https://github.com/SonarOpenCommunity/sonar-cxx), a p
 
 *Sonar* also made some further analysis of the code, such as its complexity or duplication rate. The advantage of using *SonarQube* is to have a global visibility over the source code; if the problems are put forward, it is easier to correct them.
 
-{% include image.html img="assets/Continuous-Integration/Sonar-preview.png" caption="Sonar preview" %}
+{% include image.html img="assets/Continuous-Integration-tools/Sonar-preview.png" caption="Sonar preview" %}
 
 ## Our stack
 
@@ -109,12 +109,12 @@ We have decided to use *BuildBot* and *Sonar* for our *Continuous Integration* p
 
 Here are our configuration files for these tools:
 
-- *BuildBot* master settings: [master.cfg]({{ site.baseurl }}/assets/Continuous-Integration/BuildBot-Master-cfg.html)
-- *Sonar-runner* settings to send the reports to *Sonar* (through the *Sonar plugin-CXX*): [sonar-project.properties]({{ site.baseurl }}/assets/Continuous-Integration/Sonar-Project-Properties.html)
+- *BuildBot* master settings: [master.cfg]({{ site.baseurl }}/assets/Continuous-Integration-tools/BuildBot-Master-cfg.html)
+- *Sonar-runner* settings to send the reports to *Sonar* (through the *Sonar plugin-CXX*): [sonar-project.properties]({{ site.baseurl }}/assets/Continuous-Integration-tools/Sonar-Project-Properties.html)
 
 Although the configuration of *BuildBot* is not intuitive, it is one of the tool with the fewest constraints. Here is what the architecture looks like:
 
-{% include image.html img="assets/Continuous-Integration/Conclusion-CI-Schema.png" caption="CI schema" %}
+{% include image.html img="assets/Continuous-Integration-tools/Conclusion-CI-Schema.png" caption="CI schema" %}
 
 ## What's next?
 
