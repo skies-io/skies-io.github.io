@@ -20,7 +20,7 @@ We hope to:
 
 ## Why a blog?
 
-As engineers, we face technical challenges on a daily basis, we learn a lot and we have a ton that we would like to talk about.
+As engineers, we face technical challenges on a daily basis, we learn a lot and we have a ton we would like to talk about.
 This blog is a platform to discuss engineering topics and explain the thought process behind our choices and the things we do.
 
 But this is not only a tech blog, we would like to also write about things we are passionate, care about or just hold our attention. You may find articles related to various fields or topic such as marketing, cool furnitures for your offices, lifestyle, growth hacking and much more.
