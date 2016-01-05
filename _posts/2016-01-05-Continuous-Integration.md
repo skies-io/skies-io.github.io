@@ -10,13 +10,13 @@ authors:
 
 Working on a large project with a team is not an easy task. A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build.
 
-That's when Continuous Integration (CI) comes into play. It's development practice requiring developers to push code on a daily basis in a common branch and execute a list of commands to test and build the project. We like the definition that [Thoughtworks] (https://www.thoughtworks.com/continuous-integration) provides.
+That's when Continuous Integration (CI) comes into play. It's development practice requiring developers to push code on a daily basis in a common branch and execute a list of commands to test and build the project. We like the definition that [Thoughtworks](https://www.thoughtworks.com/continuous-integration) provides.
 
 It seems really important to us to spend some time at the beginning of the project to build a platform supporting this development practice in order to detect errors early and to reduce the techincal debt. We want to increase our productivity and our product's reliability by ensuring that every aspect of the codebase is always tested (functional level, speed of execution, network performance, quality of the code). And for that, we have to use and set up some tools.
 
 Our projects are mainly realized in C++ and are hosted on GitHub repositories. We have chosen to create unit tests with the library [GoogleTest](https://github.com/google/googletest). 
 
-However, this article does not cover the creation of unit tests but describes the various tools to orchestrate and industrialize source code analysis from fetching and compiling the source code at each modification up to the generation of reports on a single interface with the publication of results on [Slack](https://slack.com) or by email.
+However, this article does not cover the creation of unit tests but describes the various tools to orchestrate and industrialize source code analysis. It goes from fetching and compiling the source code at each modification up to the generation of reports on a single interface with the publication of results on [Slack](https://slack.com) or by email.
 We also go through : 
 
 - Static code analysis
