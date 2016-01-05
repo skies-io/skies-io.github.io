@@ -41,7 +41,7 @@ Here is our candidates.
 
 Of course, the first to be tested was [Jenkins](https://jenkins-ci.org) (MIT license). It is the most known CI tool and one of the most used (eBay, Google, Facebook, NetFlix, Yahoo and many others). Its installation was fairly simple and fast.
 
-The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used [GoogleTest](https://github.com/google/googletest) for unit tests, [cppcheck](http://cppcheck.sourceforge.net) for static code analysis and [gcovr](http://gcovr.com) to calculate the coverage rate. The different compilations are done through a Makefile. This list of tasks is defined through an Ant configuration file. Then we just have to install Jenkins plugins to retrieve and format the results (i.e.: Cobertura Plugin for the output of gcovr, Cppcheck Plug-in for cppcheck...).
+The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used [GoogleTest](https://github.com/google/googletest) for unit tests, [cppcheck](http://cppcheck.sourceforge.net) for static code analysis and [gcovr](http://gcovr.com) to calculate the coverage rate. The different compilations are done through a Makefile. This list of tasks is defined through an Ant configuration file. Then we just have to install Jenkins plugins to retrieve and format the results (e.g: Cobertura Plugin for the output of gcovr and Cppcheck Plug-in for cppcheck).
 
 You can find the Ant file used for our test here: [build.xml]({{ site.baseurl }}/assets/Continuous-Integration/Jenkins-Ant-file.html).
 
@@ -59,7 +59,7 @@ Moreover, in spite of a quick installation, the interface is not perfect: some p
 
 The next tool to be tested is [BuildBot](http://buildbot.net) (GPL license). It is an Open Source CI written in Python. Compared to the previous systems, the installation and configuration of this one are a bit more complex.
 
-Indeed, unlike other tools where most configurations were filled with a GUI, BuildBot must be configured through a python file. It is inside that we define task lists, GitHub hook for calling a builder automatically, admin access, and more ... Even if it seems quite complex at first (the untidy documentation does not help) the configuration is more permissive; Moreover, once you have understood each part to configure, it is fairly simple to adjust the tool to your problems.
+Indeed, unlike other tools where most configurations were filled with a GUI, BuildBot must be configured through a python file. It is inside that we define task lists, GitHub hook for calling a builder automatically, admin access, and more ... Even if it seems quite complex at first (the untidy documentation does not help) the configuration is more permissive; moreover, once you have understood each part to configure, it is fairly simple to adjust the tool to your problems.
 
 However, there is no way to previewing reports. As Strider-CD, the tool only allows the execution of tasks and not the analysis of results.
 
@@ -91,7 +91,7 @@ Although we have not tested extensively these online tools, they could still be 
 
 ## SonarQube
 
-What we lacked was a tool that allowing us to analyse and format our results (unit tests, gcovr, static code analysis ...). We finally found [SonarQube](http://www.sonarqube.org/).
+What we lacked was a tool that allowing us to analyse and format our results (unit tests, gcovr, static code analysis). We finally found [SonarQube](http://www.sonarqube.org/).
 
 Sonar does not execute a bunch of commands like the previous tools. However, it can read the results (XML files for example) and format them by association with the source code of the project. The interface is really well made, clear, and allows us to see the problems directly on each file (with the aggregation of all results).
 
@@ -105,7 +105,7 @@ Sonar also made some further analysis of the code, such as its complexity or dup
 
 We have decided to use BuildBot and Sonar for our Continuous Integration platform.
 
-BuildBot executes our commands (unit tests, cppcheck, gcovr, valgrind, ...) after receiving an event from GitHub (with our hook) and pass the results to Sonar (through a script called "sonar-runner").
+BuildBot executes our commands (unit tests, cppcheck, gcovr, valgrind) after receiving an event from GitHub (with our hook) and pass the results to Sonar (through a script called "sonar-runner").
 
 Here are our configuration files for these tools:
 
