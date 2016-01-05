@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Continuous Integration Platform
+title: Continuous Integration tools
 subtitle: How we built our CI Platform
 authors:
   - aurelien
@@ -8,11 +8,23 @@ authors:
 
 ## Introduction
 
-A large project is announced: teamwork, use of many libraries, many lines of code, and several sub projects that will be eventually linked together. If we do not quickly install a Continuous Integration (CI) system it will be difficult to do later.
+Working on a large project with a team is not an easy task. A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build.
 
-This system will allow us to verify the source code all through the project in order to increase productivity and reliability by ensuring our code is always tested (both at the functional level, performance or the quality of the code). For that, we have to use and set up some tools.
+That's when Continuous Integration (CI) comes into play. It's development practice requiring developers to push code on a daily basis in a common branch and execute a list of commands to test and build the project. We like the definition that [Thoughtworks] (https://www.thoughtworks.com/continuous-integration) provides.
 
-Our projects are mainly realized in C++ and are hosted on GitHub repositories. We chose to create unit tests with the library [GoogleTest](https://github.com/google/googletest). This article does not cover the creation of unit tests but the various tools to orchestrate and industrialize source code analysis: from recovering and compiling the source code at each modification up to the the generation of reports on a single interface with the publication of results (on [Slack](https://slack.com) or by email) through static code analysis, complexity, code duplication, executing unit tests, computing code coverage, and finally testing the application performance.
+It seems really important to us to spend some time at the beginning of the project to build a platform supporting this development practice in order to detect errors early and to reduce the techincal debt. We want to increase our productivity and our product's reliability by ensuring that every aspect of the codebase is always tested (functional level, speed of execution, network performance, quality of the code). And for that, we have to use and set up some tools.
+
+Our projects are mainly realized in C++ and are hosted on GitHub repositories. We have chosen to create unit tests with the library [GoogleTest](https://github.com/google/googletest). 
+
+However, this article does not cover the creation of unit tests but describes the various tools to orchestrate and industrialize source code analysis from fetching and compiling the source code at each modification up to the generation of reports on a single interface with the publication of results on [Slack](https://slack.com) or by email.
+We also go through : 
+
+- Static code analysis
+- Complexity
+- Code duplication
+- Executing unit tests
+- Computing code coverage
+- Testing the application performance.
 
 We were looking for tools that meet the following criteria:
 
