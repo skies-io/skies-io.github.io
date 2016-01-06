@@ -17,16 +17,16 @@ subtitle: An IT company tackling Cloud, Storage, Big Data and Distributed System
             {% endif %}
         </a>
         
-        {% if post.image %}
-            {% include image.html img="{{post.image}}" caption="Continuous Integration workflow" %}
-         {% endif %}
-        
         <p class="post-meta">
             Posted on {{ post.date | date: "%B %-d, %Y" }} {% include authors.html authors=post.authors %}
         </p>
 
         <div class="post-entry">
-         
+             {% if post.desc %}
+                {{ post.desc | strip_html | xml_escape | truncatewords: 40 }}
+             {% else %}
+                {{ post.content | strip_html | xml_escape | truncatewords: 40 }}
+             {% endif %}
             
             <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
         </div>
