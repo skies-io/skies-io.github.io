@@ -17,14 +17,21 @@ subtitle: An IT company tackling Cloud, Storage, Big Data and Distributed System
             {% endif %}
         </a>
         
-        {% include image.html img="post.image" caption="BuildBot preview" %}
+        {% if post.subtitle %}
+            {% include image.html img="{{post.image}}" caption="BuildBot preview" %}
+         {% endif %}
         
         <p class="post-meta">
             Posted on {{ post.date | date: "%B %-d, %Y" }} {% include authors.html authors=post.authors %}
         </p>
 
         <div class="post-entry">
-            {{ post.desc || (post.content | strip_html | xml_escape | truncatewords: 40) }}
+             {% if post.desc %}
+                {{ post.desc | strip_html | xml_escape | truncatewords: 40 }}
+             {% else %}
+                {{ post.content | strip_html | xml_escape | truncatewords: 40 }}
+             {% endif %}
+            
             <a href="{{ post.url | prepend: site.baseurl }}" class="post-read-more">[Read&nbsp;More]</a>
         </div>
 
