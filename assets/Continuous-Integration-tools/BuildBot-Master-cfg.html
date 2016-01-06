@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>BuildBot Master configurations file</title>
+
+    <meta name="author" content="Skies" />
+
+    
+
+    <link rel="alternate" type="application/rss+xml" title="The Skies Blog - Skies.io Blog" href="/feed.xml" />
+
+    
+        
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        
+    
+    
+        
+            <link rel="stylesheet" href="/css/styles.css" />
+        
+    
+    
+        
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+        
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+        
+    
+    
+    
+    
+
+    <!-- Facebook OpenGraph tags -->
+    <meta property="og:title" content="BuildBot Master configurations file" />
+    <meta property="og:type" content="website" />
+
+    
+        <meta property="og:url" content="http://blog.skies.io/assets/Continuous-Integration-tools/BuildBot-Master-cfg" />
+    
+
+    
+        <meta property="og:image" content="http://blog.skies.io/img/skies-icon.png" />
+    
+
+    
+        <link href="/img/skies-favicon-32x32.png" rel="icon" type="image/png" />
+    
+
+</head>
+
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Skies Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    
+                    
+                    <li>
+                        
+                        
+
+                        
+                            
+                        
+
+                        <a href="/">Home</a>
+                    </li>
+                
+                    
+                    
+                    <li>
+                        
+                        
+                            
+                                
+                            
+                        
+
+                        
+                            
+                        
+
+                        <a href="https://github.com/skies-io">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+
+        
+            <div class="avatar-container">
+                <div class="avatar-img-border">
+                    <a href="/">
+                        <img class="avatar-img" src="/img/skies-icon.png" />
+                    </a>
+                </div>
+            </div>
+        
+
+    </div>
+</nav>
+
+
+        <div role="main" class="container main-content">
+            <header class="header-post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="post-heading">
+                <h1>BuildBot Master configurations file</h1>
+                
+                    <h2 class="post-subheading">File: master.cfg</h2>
+                
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+    <div class="row">
+        <div class="col-md-12">
+            
+<div class="highlight"><pre><code class="language-python" data-lang="python"><span class="lineno"> 1</span> <span class="c"># -*- python -*-</span>
+<span class="lineno"> 2</span> 
+<span class="lineno"> 3</span> <span class="kn">from</span> <span class="nn">buildbot.plugins</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="lineno"> 4</span> 
+<span class="lineno"> 5</span> <span class="n">c</span> <span class="o">=</span> <span class="n">BuildmasterConfig</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span> <span class="c">####### BUILDSLAVES</span>
+<span class="lineno"> 8</span> 
+<span class="lineno"> 9</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;slaves&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="n">buildslave</span><span class="o">.</span><span class="n">BuildSlave</span><span class="p">(</span><span class="s">&quot;slave&quot;</span><span class="p">,</span> <span class="s">&quot;S2n6zzCzKeuTChsmbpW7&quot;</span><span class="p">)]</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;protocols&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;pb&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;port&#39;</span><span class="p">:</span> <span class="mi">9989</span><span class="p">}}</span>
+<span class="lineno">12</span> 
+<span class="lineno">13</span> <span class="c">####### CHANGESOURCES</span>
+<span class="lineno">14</span> 
+<span class="lineno">15</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;change_source&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span> <span class="c">####### SCHEDULERS</span>
+<span class="lineno">18</span> 
+<span class="lineno">19</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;schedulers&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="lineno">20</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;schedulers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">schedulers</span><span class="o">.</span><span class="n">SingleBranchScheduler</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;all&quot;</span><span class="p">,</span> <span class="n">change_filter</span><span class="o">=</span><span class="n">util</span><span class="o">.</span><span class="n">ChangeFilter</span><span class="p">(</span><span class="n">branch</span><span class="o">=</span><span class="s">&#39;master&#39;</span><span class="p">),</span> <span class="n">treeStableTimer</span><span class="o">=</span><span class="bp">None</span><span class="p">,</span> <span class="n">builderNames</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;runtests&quot;</span><span class="p">]))</span>
+<span class="lineno">21</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;schedulers&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">schedulers</span><span class="o">.</span><span class="n">ForceScheduler</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;force&quot;</span><span class="p">,</span> <span class="n">builderNames</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;runtests&quot;</span><span class="p">]))</span>
+<span class="lineno">22</span> 
+<span class="lineno">23</span> <span class="c">####### BUILDERS</span>
+<span class="lineno">24</span> 
+<span class="lineno">25</span> <span class="n">factory</span> <span class="o">=</span> <span class="n">util</span><span class="o">.</span><span class="n">BuildFactory</span><span class="p">()</span>
+<span class="lineno">26</span> 
+<span class="lineno">27</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">Git</span><span class="p">(</span><span class="n">repourl</span><span class="o">=</span><span class="s">&#39;git@github.com:skies-io/repository.git&#39;</span><span class="p">,</span> <span class="n">branch</span><span class="o">=</span><span class="s">&#39;master&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s">&#39;incremental&#39;</span><span class="p">))</span>
+<span class="lineno">28</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;make&quot;</span><span class="p">,</span> <span class="s">&quot;clean&quot;</span><span class="p">]))</span>
+<span class="lineno">29</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;make&quot;</span><span class="p">,</span> <span class="s">&quot;unit_tests&quot;</span><span class="p">]))</span>
+<span class="lineno">30</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="s">&quot;cppcheck -v --xml --xml-version=2 --enable=all --inconclusive --language=c++ -Iinclude/ src/ 2&gt; report-cppcheck.xml&quot;</span><span class="p">))</span>
+<span class="lineno">31</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;valgrind&quot;</span><span class="p">,</span> <span class="s">&quot;--xml=yes&quot;</span><span class="p">,</span> <span class="s">&quot;--xml-file=report-valgrind.xml&quot;</span><span class="p">,</span> <span class="s">&quot;./unit_tests&quot;</span><span class="p">,</span> <span class="s">&quot;--gtest_output=xml:report-xunit.xml&quot;</span><span class="p">]))</span>
+<span class="lineno">32</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="s">&quot;gcovr -x -r . &gt; report-gcovr.xml&quot;</span><span class="p">))</span>
+<span class="lineno">33</span> <span class="n">factory</span><span class="o">.</span><span class="n">addStep</span><span class="p">(</span><span class="n">steps</span><span class="o">.</span><span class="n">ShellCommand</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;/opt/sonar-runner/bin/sonar-runner&quot;</span><span class="p">,</span> <span class="s">&quot;-X&quot;</span><span class="p">]))</span>
+<span class="lineno">34</span> 
+<span class="lineno">35</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;builders&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="lineno">36</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;builders&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">util</span><span class="o">.</span><span class="n">BuilderConfig</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="s">&quot;runtests&quot;</span><span class="p">,</span> <span class="n">slavenames</span><span class="o">=</span><span class="p">[</span><span class="s">&quot;slave&quot;</span><span class="p">],</span> <span class="n">factory</span><span class="o">=</span><span class="n">factory</span><span class="p">))</span>
+<span class="lineno">37</span> 
+<span class="lineno">38</span> <span class="c">####### STATUS TARGETS</span>
+<span class="lineno">39</span> 
+<span class="lineno">40</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;status&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="lineno">41</span> 
+<span class="lineno">42</span> <span class="kn">from</span> <span class="nn">buildbot.status</span> <span class="kn">import</span> <span class="n">html</span>
+<span class="lineno">43</span> <span class="kn">from</span> <span class="nn">buildbot.status.web</span> <span class="kn">import</span> <span class="n">authz</span><span class="p">,</span> <span class="n">auth</span>
+<span class="lineno">44</span> 
+<span class="lineno">45</span> <span class="n">authz_cfg</span><span class="o">=</span><span class="n">authz</span><span class="o">.</span><span class="n">Authz</span><span class="p">(</span><span class="n">auth</span><span class="o">=</span><span class="n">auth</span><span class="o">.</span><span class="n">BasicAuth</span><span class="p">([(</span><span class="s">&quot;admin&quot;</span><span class="p">,</span> <span class="s">&quot;S2n6zzCzKeuTChsmbpW7&quot;</span><span class="p">)]),</span> <span class="n">forceBuild</span> <span class="o">=</span> <span class="s">&#39;auth&#39;</span><span class="p">,</span> <span class="n">forceAllBuilds</span> <span class="o">=</span> <span class="s">&#39;auth&#39;</span><span class="p">)</span>
+<span class="lineno">46</span> <span class="n">github</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;github&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s">&#39;secret&#39;</span><span class="p">:</span> <span class="s">&quot;692cf6d5b41c53a7a62c7f323c91038a5ac34f784eb11e92670c425e&quot;</span><span class="p">,</span> <span class="s">&#39;strict&#39;</span><span class="p">:</span> <span class="bp">True</span><span class="p">}}</span>
+<span class="lineno">47</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;status&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">html</span><span class="o">.</span><span class="n">WebStatus</span><span class="p">(</span><span class="n">http_port</span><span class="o">=</span><span class="mi">8010</span><span class="p">,</span> <span class="n">authz</span><span class="o">=</span><span class="n">authz_cfg</span><span class="p">,</span> <span class="n">change_hook_dialects</span><span class="o">=</span><span class="n">github</span><span class="p">))</span>
+<span class="lineno">48</span> 
+<span class="lineno">49</span> <span class="c">####### PROJECT IDENTITY</span>
+<span class="lineno">50</span> 
+<span class="lineno">51</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;Skies Smart Storage&quot;</span>
+<span class="lineno">52</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;titleURL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;https://github.com/skies-io/repository/&quot;</span>
+<span class="lineno">53</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;buildbotURL&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;http://127.0.0.1:8010/&quot;</span>
+<span class="lineno">54</span> 
+<span class="lineno">55</span> <span class="c">####### DB URL</span>
+<span class="lineno">56</span> 
+<span class="lineno">57</span> <span class="n">c</span><span class="p">[</span><span class="s">&#39;db&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s">&#39;db_url&#39;</span><span class="p">:</span> <span class="s">&quot;sqlite:///state.sqlite&quot;</span><span class="p">}</span></code></pre></div>
+
+
+        </div>
+    </div>
+</article>
+
+        </div>
+
+        <footer>
+    <div class="container beautiful-jekyll-footer">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center footer-links">
+                    
+                    
+                        <li>
+                            <a href="https://github.com/skies-io" title="GitHub">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                        <li>
+                            <a href="https://twitter.com/skies_io" title="Twitter">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li>
+                            <a href="https://linkedin.com/company/skies-sas" title="LinkedIn">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li>
+                            <a href="/feed.xml" title="RSS">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Skies
+                    &nbsp;&bull;&nbsp;
+                    2016
+
+                    
+                    &nbsp;&bull;&nbsp;
+                    <a href="http://blog.skies.io">skies.io</a>
+                    
+                </p>
+
+                <!-- Please don't remove this, keep my open source work credited :) -->
+                <p class="theme-by text-muted">
+                    Theme by
+                    <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        
+
+
+    
+        <script src="/js/jquery-1.11.2.min.js"></script>
+    
+        <script src="/js/bootstrap.min.js"></script>
+    
+        <script src="/js/main.js"></script>
+    
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

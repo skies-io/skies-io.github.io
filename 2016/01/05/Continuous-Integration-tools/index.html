@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Continuous Integration tools</title>
+
+    <meta name="author" content="Skies" />
+
+    
+        <meta name="description" content="How we built our CI Platform">
+    
+
+    <link rel="alternate" type="application/rss+xml" title="The Skies Blog - Skies.io Blog" href="/feed.xml" />
+
+    
+        
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        
+    
+    
+        
+            <link rel="stylesheet" href="/css/styles.css" />
+        
+    
+    
+        
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+        
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+        
+    
+    
+    
+    
+
+    <!-- Facebook OpenGraph tags -->
+    <meta property="og:title" content="Continuous Integration tools" />
+    <meta property="og:type" content="website" />
+
+    
+        <meta property="og:url" content="http://blog.skies.io/2016/01/05/Continuous-Integration-tools/" />
+    
+
+    
+        <meta property="og:image" content="http://blog.skies.io/img/skies-icon.png" />
+    
+
+    
+        <link href="/img/skies-favicon-32x32.png" rel="icon" type="image/png" />
+    
+
+</head>
+
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Skies Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    
+                    
+                    <li>
+                        
+                        
+
+                        
+                            
+                        
+
+                        <a href="/">Home</a>
+                    </li>
+                
+                    
+                    
+                    <li>
+                        
+                        
+                            
+                                
+                            
+                        
+
+                        
+                            
+                        
+
+                        <a href="https://github.com/skies-io">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+
+        
+            <div class="avatar-container">
+                <div class="avatar-img-border">
+                    <a href="/">
+                        <img class="avatar-img" src="/img/skies-icon.png" />
+                    </a>
+                </div>
+            </div>
+        
+
+    </div>
+</nav>
+
+
+        <div role="main" class="container main-content">
+            <header class="header-post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="post-heading">
+                <h1>Continuous Integration tools</h1>
+                
+                    <h2 class="post-subheading">How we built our CI Platform</h2>
+                
+                <span class="post-meta">Posted on January 5, 2016 
+
+
+
+
+
+    
+    
+        
+        Aurelien Maigret
+    
+
+</span>
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+    <div class="row">
+        <div class="col-md-12">
+            <h2 id="introduction">Introduction</h2>
+
+<p>Working on a large project with a team is not an easy task. A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build.</p>
+
+<p>That’s when <em>Continuous Integration</em> (<em>CI</em>) comes into play. It’s development practice requiring developers to push code on a daily basis in a common branch and execute a list of commands to test and build the project. A more exhaustive definition that we like can be found on <a href="https://www.thoughtworks.com/continuous-integration"><em>Thoughtworks</em></a> provides.</p>
+
+<p>At <em>Skies</em>, it seems really important to us to spend some time at the beginning of the project to build a platform supporting this development practice in order to detect errors early and to reduce the technical debt. We want to increase our productivity and our product’s reliability by ensuring that every aspect of the codebase is always tested (functional level, speed of execution, network performance, quality of the code). And for that, we have to use and set up some tools.</p>
+
+<p>Our projects are mainly realized in <em>C++</em> and are hosted on <em>GitHub</em> repositories. We have chosen to create unit tests with the library <a href="https://github.com/google/googletest"><em>GoogleTest</em></a>.</p>
+
+<p>However, this article does not cover the creation of unit tests but describes the various tools to orchestrate and industrialize source code analysis. It goes from fetching and compiling the source code at each modification up to the generation of reports on a single interface with the publication of results on <a href="https://slack.com"><em>Slack</em></a> or by email.
+We also go through:</p>
+
+<ul>
+  <li>static code analysis</li>
+  <li>complexity</li>
+  <li>code duplication</li>
+  <li>executing unit tests</li>
+  <li>computing code coverage</li>
+  <li>testing the application performance</li>
+</ul>
+
+<p>We were looking for tools that meet the following criteria:</p>
+
+<ul>
+  <li>open source license</li>
+  <li>running on <em>unix</em></li>
+  <li>compatible with <em>GIT</em></li>
+  <li>supporting multiple programming languages (<em>C++</em>, <em>Python</em>, <em>Javascript</em> and more to come)</li>
+  <li>maintained and documented</li>
+  <li>used by established companies</li>
+</ul>
+
+<p>Here is our candidates.</p>
+
+<h2 id="jenkins">Jenkins</h2>
+
+<p>Of course, the first to be tested was <a href="https://jenkins-ci.org"><em>Jenkins</em></a> (<em>MIT license</em>). It is the most known <em>CI</em> tool and one of the most used (<em>eBay</em>, <em>Google</em>, <em>Facebook</em>, <em>NetFlix</em>, <em>Yahoo</em> and many others). Its installation was fairly simple and fast.</p>
+
+<p>The configuration is done quite easily once you know the analysis tools you want to use. In our case, we used <a href="https://github.com/google/googletest"><em>GoogleTest</em></a> for unit tests, <a href="http://cppcheck.sourceforge.net"><em>cppcheck</em></a> for static code analysis and <a href="http://gcovr.com"><em>gcovr</em></a> to calculate the coverage rate. The different compilations are done through a <em>Makefile</em>. This list of tasks is defined through an <em>Ant</em> configuration file. Then we just have to install <em>Jenkins</em> plugins to retrieve and format the results (<em>Cobertura Plugin</em> for the output of <em>gcovr</em> and <em>Cppcheck Plug-in</em> for <em>cppcheck</em>).</p>
+
+<p>You can find the <em>Ant</em> file used for our test here: <a href="/assets/Continuous-Integration-tools/Jenkins-Ant-file.html"><em>build.xml</em></a>.</p>
+
+<p>The installation, the configuration, and test execution are not too difficult with <em>Jenkins</em>. However, analysis of results and reports for developers were clearly not pleasant. The <em>Jenkins</em> interface is old and not ergonomic at all although it works fine. We preferred to look for another <em>CI</em> system, more modern and ergonomic and keep this solution as a backup plan.</p>
+
+<h2 id="strider-cd">Strider-CD</h2>
+
+<p><a href="http://stridercd.com"><em>Strider-CD</em></a> is an open source <em>CI</em> and deployment platform. Its installation was really simple. I managed to clone my projects and to add all my commands from the web interface (those which were in our <em>Ant</em> file).</p>
+
+<p>In a few minutes, I was able to successfully execute all my tests. However, the main issue with this <em>CI</em> is that there is nothing to analyze the reports; you can only set a list of commands, divided into 2 parts: tests and deploy.</p>
+
+<p>Moreover, in spite of a quick installation, the interface is not perfect: some parts are not finished, buggy and there is a lack of features.</p>
+
+<h2 id="buildbot">BuildBot</h2>
+
+<p>The next tool to be tested is <a href="http://buildbot.net"><em>BuildBot</em></a> (<em>GPL license</em>). It is an Open Source <em>CI</em> written in <em>Python</em>. Compared to the previous systems, the installation and configuration of this one are a bit more complex.</p>
+
+<p>Indeed, unlike other tools where most configurations were filled with a <em>GUI</em>, <em>BuildBot</em> must be configured through a <em>Python</em> file. It is inside that we define task lists, <em>GitHub</em> hook for calling a builder automatically, admin access, and more … Even if it seems quite complex at first (the untidy documentation does not help) the configuration is more permissive; moreover, once you have understood each part to configure, it is fairly simple to adjust the tool to your problems.</p>
+
+<p>However, there is no way to previewing reports. As <em>Strider-CD</em>, the tool only allows the execution of tasks and not the analysis of results.</p>
+
+<p>Finally, the interface is not very modern like <em>Jenkins</em>, but it is possible to customize the <em>HTML</em> and <em>CSS</em> of the tool by overriding the template files.</p>
+
+<div class="image-wrapper">
+    
+        <img src="/assets/Continuous-Integration-tools/BuildBot-preview.png" alt="BuildBot preview" />
+    
+    
+        <p class="image-caption">BuildBot preview</p>
+    
+</div>
+
+<h2 id="paas-products">PaaS products</h2>
+
+<p>Being in 2016, we could not overlook <em>PaaS</em> products offering <em>Continuous Integration</em> but ultimately we chose not to use them.</p>
+
+<p>Why?</p>
+
+<p>These tools are:</p>
+
+<ul>
+  <li>offering a great <em>UI</em></li>
+  <li>easier and faster to set up</li>
+</ul>
+
+<p>But:</p>
+
+<ul>
+  <li>they offer less flexibility and features (for instance, many of them do not support pull requests or log compressions)</li>
+  <li>we do not want to depend on 3rd party tools for such crucial parts and have our code accessible on remote servers</li>
+  <li>some of them (like <em>Hosted-CI</em>) are just a hosted <em>Jenkins</em> server</li>
+  <li>they are quite expensive (<em>Travis-CI</em> starts at $139/month) for non open source projects</li>
+</ul>
+
+<p>Some might argue that hosting, installing, configuring and running a <em>Jenkins</em> server (or equivalent) is way more expensive but we really want to maintain control over our <em>CI</em>.</p>
+
+<p>Although we have not tested extensively these online tools, they could still be useful to you, depending on your needs and criteria. Here are those which were able to hold our attention: <a href="https://www.jetbrains.com/teamcity/"><em>TeamCity</em></a>, <a href="https://codeship.com/"><em>Codeship</em></a>, <a href="https://www.atlassian.com/software/bamboo/"><em>Bamboo</em></a>, <a href="https://drone.io"><em>Drone.io</em></a>, <a href="https://circleci.com"><em>CircleCI</em></a>, <a href="https://about.gitlab.com/gitlab-ci/"><em>GitLab-CI</em></a> and <a href="https://travis-ci.com"><em>Travis-CI</em></a>.</p>
+
+<h2 id="sonarqube">SonarQube</h2>
+
+<p>What we lacked was a tool that allowing us to analyse and format our results (unit tests, code coverage, static code analysis). We finally found <a href="http://www.sonarqube.org/"><em>SonarQube</em></a>.</p>
+
+<p><em>Sonar</em> does not execute a bunch of commands like the previous tools. However, it can read the results (<em>XML</em> files for example) and format them by association with the source code of the project. The interface is really well made, clear, and allows us to see the problems directly on each file (with the aggregation of all results).</p>
+
+<p>We also used <a href="https://github.com/SonarOpenCommunity/sonar-cxx"><em>Sonar-CXX</em></a>, a plugin for <em>Sonar</em> to manage the <em>C++</em>. It can read the reports of <a href="http://valgrind.org"><em>Valgrind</em></a>, <a href="http://cppcheck.sourceforge.net"><em>cppcheck</em></a>, <a href="https://code.google.com/p/rough-auditing-tool-for-security/"><em>RATS</em></a>, <a href="http://gcovr.com"><em>gcovr</em></a>, <a href="https://bitbucket.org/verateam/vera/overview"><em>Vera++</em></a> …</p>
+
+<p><em>Sonar</em> also made some further analysis of the code, such as its complexity or duplication rate. The advantage of using <em>SonarQube</em> is to have a global visibility over the source code; if the problems are put forward, it is easier to correct them.</p>
+
+<div class="image-wrapper">
+    
+        <img src="/assets/Continuous-Integration-tools/Sonar-preview.png" alt="Sonar preview" />
+    
+    
+        <p class="image-caption">Sonar preview</p>
+    
+</div>
+
+<h2 id="our-stack">Our stack</h2>
+
+<p>We have decided to use <em>BuildBot</em> and <em>Sonar</em> for our <em>Continuous Integration</em> platform.</p>
+
+<p><em>BuildBot</em> executes our commands (unit tests, <em>cppcheck</em>, <em>gcovr</em>, <em>valgrind</em>) after receiving an event from <em>GitHub</em> (with our hook) and pass the results to <em>Sonar</em> (through a script called <em>sonar-runner</em>).</p>
+
+<p>Here are our configuration files for these tools:</p>
+
+<ul>
+  <li><em>BuildBot</em> master settings: <a href="/assets/Continuous-Integration-tools/BuildBot-Master-cfg.html">master.cfg</a></li>
+  <li><em>Sonar-runner</em> settings to send the reports to <em>Sonar</em> (through the <em>Sonar plugin-CXX</em>): <a href="/assets/Continuous-Integration-tools/Sonar-Project-Properties.html">sonar-project.properties</a></li>
+</ul>
+
+<p>Although the configuration of <em>BuildBot</em> is not intuitive, it is one of the tool with the fewest constraints. Here is what the architecture looks like:</p>
+
+<div class="image-wrapper">
+    
+        <img src="/assets/Continuous-Integration-tools/Conclusion-CI-Schema.png" alt="CI schema" />
+    
+    
+        <p class="image-caption">CI schema</p>
+    
+</div>
+
+<h2 id="whats-next">What’s next?</h2>
+
+<p>For now, this stack meets our needs. We are going to closely monitor the build time and the failure rates of our builds and see if <em>BuildBot</em>’s performances are up to the task.</p>
+
+<p>We are also planning to integrate the code review tool <a href="http://www.gerritcodereview.com"><em>Gerrit</em></a> in our workflow to improve the quality of our code.</p>
+
+        </div>
+    </div>
+</article>
+
+<div class="row">
+    <div class="col-md-12">
+        <ul class="pager blog-pager">
+            
+                <li class="previous">
+                    <a href="/2016/01/04/Skies-blog" data-toggle="tooltip" data-placement="top" title="Skies tech blog">&larr; Previous Post</a>
+                </li>
+            
+            
+        </ul>
+    </div>
+</div>
+
+
+    <div class="row disqus-comments">
+        <div class="col-md-12">
+            
+	<div class="comments">
+		<div id="disqus_thread"></div>
+		<script type="text/javascript">
+			var disqus_config = function () {
+				this.page.url = 'http://blog.skies.io/2016/01/05/Continuous-Integration-tools';
+				this.page.identifier = '/2016/01/05/Continuous-Integration-tools';
+			};
+			(function() {
+				var d = document, s = d.createElement('script');
+				s.src = '//skiestechblog.disqus.com/embed.js';
+				s.setAttribute('data-timestamp', +new Date());
+				(d.head || d.body).appendChild(s);
+			})();
+		</script>
+		<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+	</div>
+
+
+        </div>
+    </div>
+
+
+        </div>
+
+        <footer>
+    <div class="container beautiful-jekyll-footer">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center footer-links">
+                    
+                    
+                        <li>
+                            <a href="https://github.com/skies-io" title="GitHub">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                        <li>
+                            <a href="https://twitter.com/skies_io" title="Twitter">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li>
+                            <a href="https://linkedin.com/company/skies-sas" title="LinkedIn">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li>
+                            <a href="/feed.xml" title="RSS">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Skies
+                    &nbsp;&bull;&nbsp;
+                    2016
+
+                    
+                    &nbsp;&bull;&nbsp;
+                    <a href="http://blog.skies.io">skies.io</a>
+                    
+                </p>
+
+                <!-- Please don't remove this, keep my open source work credited :) -->
+                <p class="theme-by text-muted">
+                    Theme by
+                    <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        
+
+
+    
+        <script src="/js/jquery-1.11.2.min.js"></script>
+    
+        <script src="/js/bootstrap.min.js"></script>
+    
+        <script src="/js/main.js"></script>
+    
+
+
+
+
+
+
+
+
+
+    </body>
+</html>

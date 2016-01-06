@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>The Skies Blog</title>
+        <description>Skies.io Blog</description>
+        <link>http://blog.skies.io</link>
+        <atom:link href="http://blog.skies.io/feed.xml" rel="self" type="application/rss+xml" />
+        
+        
+            <item>
+                <title>Continuous Integration tools</title>
+                <author>Aurelien Maigret</author>
+                <description>How we built our CI Platform - Introduction Working on a large project with a team is not an easy task. A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of...</description>
+                <pubDate>Tue, 05 Jan 2016 00:00:00 +0100</pubDate>
+                <link>http://blog.skies.io/2016/01/05/Continuous-Integration-tools</link>
+                <guid isPermaLink="true">http://blog.skies.io/2016/01/05/Continuous-Integration-tools</guid>
+            </item>
+        
+            <item>
+                <title>Skies tech blog</title>
+                <author>Alexandre Nucera</author>
+                <description>Who we are and what we do - Who we are and what we do Welcome to Skies’ blog. We are a small startup (team of 7 people) working on fun topics: Cloud, Big Data, distributed systems, automated deployment and storage. Our offices are located in France (Nancy/Metz)....</description>
+                <pubDate>Mon, 04 Jan 2016 00:00:00 +0100</pubDate>
+                <link>http://blog.skies.io/2016/01/04/Skies-blog</link>
+                <guid isPermaLink="true">http://blog.skies.io/2016/01/04/Skies-blog</guid>
+            </item>
+        
+    </channel>
+</rss>

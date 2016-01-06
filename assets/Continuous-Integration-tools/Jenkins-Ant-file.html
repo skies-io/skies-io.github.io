@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+    <title>Jenkins Ant file</title>
+
+    <meta name="author" content="Skies" />
+
+    
+
+    <link rel="alternate" type="application/rss+xml" title="The Skies Blog - Skies.io Blog" href="/feed.xml" />
+
+    
+        
+            <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" />
+        
+    
+    
+        
+            <link rel="stylesheet" href="/css/styles.css" />
+        
+    
+    
+        
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" />
+        
+            <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" />
+        
+    
+    
+    
+    
+
+    <!-- Facebook OpenGraph tags -->
+    <meta property="og:title" content="Jenkins Ant file" />
+    <meta property="og:type" content="website" />
+
+    
+        <meta property="og:url" content="http://blog.skies.io/assets/Continuous-Integration-tools/Jenkins-Ant-file" />
+    
+
+    
+        <meta property="og:image" content="http://blog.skies.io/img/skies-icon.png" />
+    
+
+    
+        <link href="/img/skies-favicon-32x32.png" rel="icon" type="image/png" />
+    
+
+</head>
+
+
+    <body>
+        <nav class="navbar navbar-default navbar-fixed-top navbar-custom">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#main-navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">The Skies Blog</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="main-navbar">
+            <ul class="nav navbar-nav navbar-right">
+                
+                    
+                    
+                    <li>
+                        
+                        
+
+                        
+                            
+                        
+
+                        <a href="/">Home</a>
+                    </li>
+                
+                    
+                    
+                    <li>
+                        
+                        
+                            
+                                
+                            
+                        
+
+                        
+                            
+                        
+
+                        <a href="https://github.com/skies-io">GitHub</a>
+                    </li>
+                
+            </ul>
+        </div>
+
+        
+            <div class="avatar-container">
+                <div class="avatar-img-border">
+                    <a href="/">
+                        <img class="avatar-img" src="/img/skies-icon.png" />
+                    </a>
+                </div>
+            </div>
+        
+
+    </div>
+</nav>
+
+
+        <div role="main" class="container main-content">
+            <header class="header-post">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="post-heading">
+                <h1>Jenkins Ant file</h1>
+                
+                    <h2 class="post-subheading">File: build.xml</h2>
+                
+            </div>
+        </div>
+    </div>
+</header>
+
+<article>
+    <div class="row">
+        <div class="col-md-12">
+            
+<div class="highlight"><pre><code class="language-xml" data-lang="xml"><span class="lineno"> 1</span> <span class="cp">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span>
+<span class="lineno"> 2</span> <span class="nt">&lt;project</span> <span class="na">name=</span><span class="s">&quot;CppApp&quot;</span> <span class="na">default=</span><span class="s">&quot;jenkins&quot;</span> <span class="na">basedir=</span><span class="s">&quot;.&quot;</span><span class="nt">&gt;</span>
+<span class="lineno"> 3</span>     <span class="nt">&lt;description&gt;</span>
+<span class="lineno"> 4</span>         Jenkins - Ant file - Cpp Project
+<span class="lineno"> 5</span>     <span class="nt">&lt;/description&gt;</span>
+<span class="lineno"> 6</span> 
+<span class="lineno"> 7</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;init&quot;</span><span class="nt">&gt;</span>
+<span class="lineno"> 8</span>         <span class="nt">&lt;tstamp/&gt;</span>
+<span class="lineno"> 9</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">10</span> 
+<span class="lineno">11</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;clean&quot;</span> <span class="na">description=</span><span class="s">&quot;Clean up&quot;</span> <span class="nt">&gt;</span>
+<span class="lineno">12</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;/usr/bin/make&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">13</span>             <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;clean&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">14</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">15</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">16</span> 
+<span class="lineno">17</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;compile&quot;</span> <span class="na">description=</span><span class="s">&quot;Compile the source files&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">18</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;/usr/bin/make&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">19</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">20</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">21</span> 
+<span class="lineno">22</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;compile-tests&quot;</span> <span class="na">description=</span><span class="s">&quot;Compile the tests files&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">23</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;/usr/bin/make&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">24</span>             <span class="nt">&lt;arg</span> <span class="na">value=</span><span class="s">&quot;unit_tests&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">25</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">26</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">27</span> 
+<span class="lineno">28</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;gtest&quot;</span> <span class="na">description=</span><span class="s">&quot;Run GTest&quot;</span> <span class="na">depends=</span><span class="s">&quot;compile-tests&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">29</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;./unit_tests&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">30</span>             <span class="nt">&lt;arg</span> <span class="na">line=</span><span class="s">&quot;--gtest_output=&#39;xml:./outputGTest.xml&#39;&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">31</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">32</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">33</span> 
+<span class="lineno">34</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;cppcheck&quot;</span> <span class="na">description=</span><span class="s">&quot;Run cppcheck static code analysis&quot;</span> <span class="nt">&gt;</span>
+<span class="lineno">35</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;/usr/bin/cppcheck&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">36</span>             <span class="nt">&lt;arg</span> <span class="na">line=</span><span class="s">&quot;--xml --xml-version=2 --enable=all --inconclusive --language=c++ ./src/&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">37</span>             <span class="nt">&lt;redirector</span> <span class="na">error=</span><span class="s">&quot;outputCppCheck.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">38</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">39</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">40</span> 
+<span class="lineno">41</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;gcovr-xml&quot;</span> <span class="na">description=</span><span class="s">&quot;Run gcovr and generate coverage XML output&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">42</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;/usr/local/bin/gcovr&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">43</span>             <span class="nt">&lt;arg</span> <span class="na">line=</span><span class="s">&quot;--branches --xml-pretty -r ./src/&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">44</span>             <span class="nt">&lt;redirector</span> <span class="na">output=</span><span class="s">&quot;outputGcovr.xml&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">45</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">46</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">47</span> 
+<span class="lineno">48</span>     <span class="nt">&lt;target</span> <span class="na">name=</span><span class="s">&quot;gcovr-html&quot;</span> <span class="na">description=</span><span class="s">&quot;Run gcovr and generate coverage HTML output&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">49</span>         <span class="nt">&lt;exec</span> <span class="na">dir=</span><span class="s">&quot;./&quot;</span> <span class="na">executable=</span><span class="s">&quot;/usr/local/bin/gcovr&quot;</span> <span class="na">failonerror=</span><span class="s">&quot;true&quot;</span><span class="nt">&gt;</span>
+<span class="lineno">50</span>             <span class="nt">&lt;arg</span> <span class="na">line=</span><span class="s">&quot;--branches -r ./src/ --html --html-details -o outputGcovrReport.html&quot;</span><span class="nt">/&gt;</span>
+<span class="lineno">51</span>         <span class="nt">&lt;/exec&gt;</span>
+<span class="lineno">52</span>     <span class="nt">&lt;/target&gt;</span>
+<span class="lineno">53</span> 
+<span class="lineno">54</span> <span class="nt">&lt;/project&gt;</span></code></pre></div>
+
+
+        </div>
+    </div>
+</article>
+
+        </div>
+
+        <footer>
+    <div class="container beautiful-jekyll-footer">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <ul class="list-inline text-center footer-links">
+                    
+                    
+                        <li>
+                            <a href="https://github.com/skies-io" title="GitHub">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                        <li>
+                            <a href="https://twitter.com/skies_io" title="Twitter">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li>
+                            <a href="https://linkedin.com/company/skies-sas" title="LinkedIn">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                    
+                    
+                        <li>
+                            <a href="/feed.xml" title="RSS">
+                                <span class="fa-stack fa-lg">
+                                    <i class="fa fa-circle fa-stack-2x"></i>
+                                    <i class="fa fa-rss fa-stack-1x fa-inverse"></i>
+                                </span>
+                            </a>
+                        </li>
+                    
+                </ul>
+                <p class="copyright text-muted">
+                    Skies
+                    &nbsp;&bull;&nbsp;
+                    2016
+
+                    
+                    &nbsp;&bull;&nbsp;
+                    <a href="http://blog.skies.io">skies.io</a>
+                    
+                </p>
+
+                <!-- Please don't remove this, keep my open source work credited :) -->
+                <p class="theme-by text-muted">
+                    Theme by
+                    <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
+                </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+        
+
+
+    
+        <script src="/js/jquery-1.11.2.min.js"></script>
+    
+        <script src="/js/bootstrap.min.js"></script>
+    
+        <script src="/js/main.js"></script>
+    
+
+
+
+
+
+
+
+
+
+    </body>
+</html>
