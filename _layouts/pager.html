@@ -20,7 +20,7 @@ layout: page
         <p class="post-meta">
             Posted on {{ post.date | date: "%B %-d, %Y" }} {% include authors.html authors=post.authors %}
             {% for tag in post.tags %}
-                <a href="{{ site.baseurl }}/{{ site.tag.path }}/{{ tag | tag_slug }}/" class="tag"><em>#{{ tag }}</em></a>
+                <a href="{{ site.baseurl }}/{{ site.tag.path }}/{{ tag | tag_slug }}/" class="tag"><em>{{ tag }}</em></a>
             {% endfor %}
         </p>
 
