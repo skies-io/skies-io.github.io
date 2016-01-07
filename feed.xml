@@ -12,7 +12,7 @@ layout: null
         {% for post in posts limit:20 %}
             <item>
                 <title>{{ post.title | xml_escape }}</title>
-                <author>{% capture authors %}{% include authors.html authors=post.authors html=false %}{% endcapture %}{{ authors | remove: "  " | strip_newlines }}</author>
+                <author>{% capture authors %}{% include authors.html authors=post.authors text=true %}{% endcapture %}{{ authors | remove: "  " | strip_newlines }}</author>
                 <description>{% if post.subtitle %}{{ post.subtitle | xml_escape }} - {% endif %}{{ post.content | strip_html | xml_escape | truncatewords: 40 }}</description>
                 <pubDate>{{ post.date | date: "%a, %d %b %Y %H:%M:%S %z" }}</pubDate>
                 <link>{{ site.url }}{{ post.url }}</link>

@@ -1,12 +1,12 @@
 {% assign counter = 0 %}
-{% assign html = !include.html %}
+{% assign text = include.text %}
 {% assign authors_len = include.authors | size %}
 {% assign pos_last = include.authors | size | minus:1 %}
 
 {% if authors_len > 0 %}
-    {% if html %}by{% endif %}
+    {% if text != true %}by{% endif %}
     {% for author in include.authors %}
         {% assign counter = counter | plus:1 %}
-        {% if html %}<span title="{{ site.data.authors[author].title }}">{% endif %}{{ site.data.authors[author].name }}{% if html %}</span>{% endif %}{% if counter == pos_last %} and {% elsif counter < authors_len %}, {% endif %}
+        {% if text != true %}<span title="{{ site.data.authors[author].title }}">{% endif %}{{ site.data.authors[author].name }}{% if text != true %}</span>{% endif %}{% if counter == pos_last %} and {% elsif counter < authors_len %}, {% endif %}
     {% endfor %}
 {% endif %}
