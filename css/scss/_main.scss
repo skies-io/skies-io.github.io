@@ -24,7 +24,7 @@ a {
 }
 a:hover,
 a:focus {
-  color: #0085a1;
+  color: #00AEEF;
 }
 blockquote {
   color: #808080;
@@ -59,12 +59,12 @@ hr.small {
 ::-moz-selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #00AEEF;
 }
 ::selection {
   color: white;
   text-shadow: none;
-  background: #0085a1;
+  background: #00AEEF;
 }
 img::selection {
   color: white;
@@ -220,7 +220,7 @@ footer .theme-by {
 
 .post-preview {
   padding: 20px 0;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid #E1ECF4;
 }
 
 @media only screen and (min-width: 768px) {
@@ -241,7 +241,7 @@ footer .theme-by {
 .post-preview a:focus,
 .post-preview a:hover {
   text-decoration: none;
-  color: #0085a1;
+  color: #00AEEF;
 }
 
 .post-preview .post-title {
@@ -352,8 +352,8 @@ header.header-post .post-heading .post-subheading {
 .pager li a:hover,
 .pager li a:focus {
   color: #FFF;
-  background: #0085a1;
-  border: 1px solid #0085a1;
+  background: #00AEEF;
+  border: 1px solid #00AEEF;
 }
 
 .pager {
