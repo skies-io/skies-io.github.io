@@ -35,7 +35,7 @@
                     {% endif %}
                     {% if site.author.email and site.footer-links-active.email %}
                         <li>
-                            <a href="mailto:{{ site.author.email }}" title="Email me">
+                            <a href="mailto:{{ site.author.email }}" title="Email us at {{ site.author.email }}">
                                 <span class="fa-stack fa-lg">
                                     <i class="fa fa-circle fa-stack-2x"></i>
                                     <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
@@ -83,12 +83,6 @@
                     &nbsp;&bull;&nbsp;
                     <a href="{{ site.url }}">{{ site.url-pretty }}</a>
                     {% endif %}
-                </p>
-
-                <!-- Please don't remove this, keep my open source work credited :) -->
-                <p class="theme-by text-muted">
-                    Theme by
-                    <a href="http://deanattali.com/beautiful-jekyll/">beautiful-jekyll</a>
                 </p>
             </div>
         </div>

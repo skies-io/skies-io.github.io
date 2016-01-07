@@ -45,10 +45,11 @@ navbar-links:
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
   name: Skies
-#  facebook: yourname  # eg. daattali
+  email: contact@skies.io
   github: skies-io    # eg. daattali
   twitter: skies_io   # eg. daattali
   linkedin: company/skies-sas  # eg. "pub/dean-attali/8/946/143"
+  #  facebook: yourname  # eg. daattali
 #  stackoverflow: yourlink  # eg. "3943160/daattali"
 
 # Select which links to show in the footer
