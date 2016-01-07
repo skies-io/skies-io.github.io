@@ -6,7 +6,7 @@ authors:
   - stego
 desc: "Follow our journey as a small tech startup working on fun topics and sharing our work and interests."
 tags:
-  - Culture
+  - Company's culture
 ---
 
 ## Who we are and what we do
