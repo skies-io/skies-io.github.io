@@ -2,8 +2,8 @@
 layout: post
 title: Continuous Integration tools
 subtitle: How we built our CI Platform
-image: "assets/Continuous-Integration-tools/Sonar-preview.png"
-desc: "A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build. That's when *Continuous Integration* (*CI*) comes into play."
+image: "assets/Continuous-Integration-tools/Conclusion-CI-Schema.png"
+desc: "A large project generally involves many lines of code in different languages with many libraries. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build. That's when Continuous Integration (CI) comes into play."
 authors:
   - aurelien
 tags:
