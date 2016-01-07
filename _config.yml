@@ -72,7 +72,7 @@ url-pretty: "skies.io"  # eg. "deanattali.com/beautiful-jekyll"
 disqus: "skiestechblog"
 
 # Fill in your Google Analytics ID to track your website using GA
-#google_analytics: ""
+google_analytics: "UA-72123231-1"
 
 
 # --- TAG --- #
