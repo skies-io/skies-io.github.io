@@ -10,7 +10,7 @@
             <item>
                 <title>Continuous Integration tools</title>
                 <author>Aurelien Maigret</author>
-                <description>How we built our CI Platform - Introduction Working on a large project with a team is not an easy task. A large project generally involves many lines of code in different languages with many libraries and sub projects dependencies. Developers work simultaneously on multiple parts of...</description>
+                <description>How we built our CI Platform - A large project generally involves many lines of code in different languages with many libraries. Developers work simultaneously on multiple parts of the software and it can become a nightmare to produce a stable and clean build. That's when Continuous Integration (CI) comes into play.</description>
                 <pubDate>Tue, 05 Jan 2016 00:00:00 +0100</pubDate>
                 <link>http://blog.skies.io/2016/01/05/Continuous-Integration-tools</link>
                 <guid isPermaLink="true">http://blog.skies.io/2016/01/05/Continuous-Integration-tools</guid>
@@ -19,7 +19,7 @@
             <item>
                 <title>Skies blog</title>
                 <author>Alexandre Nucera</author>
-                <description>Who we are and what we do - Who we are and what we do We are a small tech startup (team of 7 people) working on Smart Storage, a software-defined storage solution targeting companies storing buttloads of data. We are tackling fun topics related but not limited...</description>
+                <description>Who we are and what we do - Follow our journey as a small tech startup working on fun topics and sharing our work and interests.</description>
                 <pubDate>Mon, 04 Jan 2016 00:00:00 +0100</pubDate>
                 <link>http://blog.skies.io/2016/01/04/Skies-blog</link>
                 <guid isPermaLink="true">http://blog.skies.io/2016/01/04/Skies-blog</guid>
